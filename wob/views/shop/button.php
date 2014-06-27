@@ -25,13 +25,13 @@ $this->h1 = 'Create button';
 
 	<p class="note">Fields with <span class="required">*</span> are required.</p>
 
-	<div class="input-group">
+	<div class="form-group">
 		<?php echo $form->labelEx($model,'amount'); ?>
 		<?php echo $form->textField($model,'amount',array('class'=>'form-control')); ?>
 		<?php echo $form->error($model,'amount'); ?>
 	</div>
 
-	<div class="input-group">
+	<div class="form-group">
 		<?php echo $form->labelEx($model,'currency_code'); ?>
 		<?php echo $form->dropDownList(
 			$model,
@@ -42,7 +42,7 @@ $this->h1 = 'Create button';
 		<?php echo $form->error($model,'currency_code'); ?>
 	</div>
 
-	<div class="input-group">
+	<div class="form-group">
 		<?php echo $form->labelEx($model,'currency_code_pay'); ?>
 		<?php echo $form->dropDownList(
 			$model,
@@ -57,7 +57,7 @@ $this->h1 = 'Create button';
 	<div class="msg-err myerr" style="display: none"></div>
 	<?php echo $form->errorSummary($model, '<b>Warning!</b>', '', array('class'=>'alert alert-danger')); ?>
 
-	<div class="input-group buttons">
+	<div class="form-group buttons">
 		<?php echo CHtml::submitButton('Create', array('class'=>'btn btn-primary')); ?>
 	</div>
 <?php $this->endWidget(); ?>

@@ -51,4 +51,5 @@ $this->h1 = 'View Shops #'. $model->id;
 			'value'=>'ViewPrice::format($data->volume, $data->currency->code, $data->currency->round)',
 		),
 	),
+	'itemsCssClass'=>'table',
 )); ?>

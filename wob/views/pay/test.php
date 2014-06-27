@@ -18,34 +18,34 @@
 	),
 )); ?>
 
-	<div class="input-group">
+	<div class="form-group">
 		<?php echo $form->hiddenField($model,'merchant_id'); ?>
 		<?php echo $form->error($model,'merchant_id'); ?>
 	</div>
 
-	<div class="input-group">
+	<div class="form-group">
 		<?php echo $form->hiddenField($model,'id_order_shop'); ?>
 		<?php echo $form->error($model,'id_order_shop'); ?>
 	</div>
 
-	<div class="input-group">
+	<div class="form-group">
 		<?php echo $form->hiddenField($model,'amount'); ?>
 		<?php echo $form->error($model,'amount'); ?>
 	</div>
 
-	<div class="input-group">
+	<div class="form-group">
 		<?php echo $form->hiddenField($model,'currency_code'); ?>
 		<?php echo $form->error($model,'currency_code'); ?>
 	</div>
 
-	<div class="input-group">
+	<div class="form-group">
 		<?php echo $form->hiddenField($model,'currency_code_pay'); ?>
 		<?php echo $form->error($model,'currency_code_pay'); ?>
 	</div>
 
 	<div class="msg-ok" style="display: none"></div>
 	<div class="msg-err myerr" style="display: none"></div>
-	<div class="input-group buttons">
+	<div class="form-group buttons">
 		<?php echo CHtml::submitButton('Успешная оплата', array('class'=>'btn btn-primary')); ?>
 	</div>
 <?php $this->endWidget(); ?>
