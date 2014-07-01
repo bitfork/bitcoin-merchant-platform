@@ -38,6 +38,7 @@ class ShopController extends WobController
 	public function actionCreate()
 	{
 		$model=new WobShops;
+		$model->email_admin = (isset(Yii::app()->user->email)) ? Yii::app()->user->email : null;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
@@ -124,6 +125,13 @@ class ShopController extends WobController
 	 */
 	public function actionIndex()
 	{
+		$str = '1.1.1.1.1';
+		preg_match('/^([0-9]*)\.([0-9\.]*)/iu', $str, $m);
+		echo "<pre>";
+		print_r($m);
+		echo "</pre>";
+		echo preg_replace('/^([0-9]*)\.([0-9\.]*)/iu', '$1$2', $str);
+
 		$dataProvider=WobShops::model()->getListMy();
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,

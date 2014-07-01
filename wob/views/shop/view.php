@@ -22,6 +22,7 @@ $this->h1 = 'View Shops #'. $model->id;
 		'id',
 		'url',
 		'name',
+		'email_admin',
 		'password_api',
 		'url_result_api',
 		array(
@@ -37,19 +38,4 @@ $this->h1 = 'View Shops #'. $model->id;
 			'value'=>$model->getStrIsTestMode(),
 		),
 	),
-)); ?>
-
-<br />
-<h2>Счета</h2>
-<?php $this->widget('zii.widgets.grid.CGridView', array(
-	'id'=>'wallets-grid',
-	'dataProvider'=>new CArrayDataProvider($model->wallets),
-	'columns'=>array(
-		array(
-			'name'=>'volume',
-			'type'=>'raw',
-			'value'=>'ViewPrice::format($data->volume, $data->currency->code, $data->currency->round)',
-		),
-	),
-	'itemsCssClass'=>'table',
 )); ?>

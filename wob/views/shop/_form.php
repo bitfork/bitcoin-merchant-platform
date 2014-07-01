@@ -28,6 +28,12 @@
 	</div>
 
 	<div class="form-group">
+		<?php echo $form->labelEx($model,'email_admin'); ?>
+		<?php echo $form->textField($model,'email_admin',array('class'=>'form-control')); ?>
+		<?php echo $form->error($model,'email_admin'); ?>
+	</div>
+
+	<div class="form-group">
 		<?php echo $form->labelEx($model,'password_api'); ?>
 		<?php echo $form->textField($model,'password_api',array('class'=>'form-control')); ?>
 		<?php echo $form->error($model,'password_api'); ?>

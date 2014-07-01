@@ -283,6 +283,9 @@ class WobWallet
 	 */
 	public function sendFrom($account, $toaddress, $btc, $minconf = 1)
 	{
+		if ($this->isLocal()) {
+			return true;
+		}
 		$account = $this->getNameAccount($account);
 		try {
 			return $this->_wallet->sendfrom($account, (string)$toaddress, (float)$btc, (int)$minconf);

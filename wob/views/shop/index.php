@@ -8,6 +8,7 @@ $this->breadcrumbs=array(
 
 $this->menu=array(
 	array('label'=>'Create Shops', 'url'=>array('create')),
+	array('label'=>'Balance', 'url'=>array('/wob/wallet/index')),
 );
 $this->h1 = 'Shops';
 ?>

@@ -65,10 +65,12 @@ $this->h1 = 'Create button';
 </div><!-- form -->
 
 <div id="createButton"></div>
+<textarea id="createButtonInput" class="form-control" rows="10"></textarea>
 
 <script language="javascript">
 function formBeforeValidate(form) {
 	$('#createButton').html('...');
+	$('#createButtonInput').html('');
 	$(form).find('.msg-ok').html('');
 	$(form).find('.myerr').html('');
 	$(form).find('.msg-ok').hide();
@@ -82,6 +84,7 @@ function formAfterValidate(form, data, hasError) {
 			$(form).find('.myerr').show();
 		} else {
 			$('#createButton').html(data.content);
+			$('#createButtonInput').html(data.content);
 		}
 		return false;
 	}

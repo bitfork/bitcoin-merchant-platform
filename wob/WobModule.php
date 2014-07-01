@@ -22,6 +22,13 @@ class WobModule extends CWebModule
 	public $defaultController='shop';
 	public $initCss = true;
 	public $fileCss = 'bootstrap';
+	public $is_activate_address = true;
+
+	public $admin_email = '';
+	public $admin_name = '';
+	public $mail_new_client = true;
+	public $mail_new_admin = true;
+	public $mail_view_path = 'wob.views.email';
 
 	public function init()
 	{
@@ -34,6 +41,9 @@ class WobModule extends CWebModule
 			'wob.components.*',
 			'wob.components.helpers.*',
 		));
+
+		if (empty($this->admin_email))
+			$this->admin_email = Yii::app()->params['adminEmail'];
 	}
 
 	public function beforeControllerAction($controller, $action)

@@ -6,6 +6,7 @@ class Wob
 
 	protected static $_instanceWallet = array();
 	protected static $_instanceCurrency = null;
+	protected static $_instanceMail = null;
 
 	/**
 	 * модуль
@@ -52,6 +53,18 @@ class Wob
 	}
 
 	/**
+	 * почта
+	 * @return null|WobCurrency
+	 */
+	public static function mail()
+	{
+		if (null === self::$_instanceMail) {
+			self::$_instanceMail = new WobMail(self::module()->admin_email, self::module()->admin_name, self::module()->mail_view_path);
+		}
+		return self::$_instanceMail;
+	}
+
+	/**
 	 * для не оплаченных заказов запускается процесс проверки статуса
 	 */
 	public static function startSetStatusPayOrders()
@@ -62,6 +75,26 @@ class Wob
 			':id_status_1'=>WobOrders::STATUS_READY,
 			':id_status_2'=>WobOrders::STATUS_FINISH,
 		));
+		foreach ($orders as $order) {
+			$order->setStatusPay();
+		}
+	}
+
+	/**
+	 * для заявок на вывод запустить отправку средств
+	 */
+	public static function startSetStatusPayoff()
+	{
+		if (self::module()->is_activate_address) {
+			$orders = WobOrdersPayoff::model()->with('wallet')->findAll('id_status!=:id_status_1 and wallet.is_address_activate = 1', array(
+				':id_status_1'=>WobOrders::STATUS_FINISH,
+			));
+		} else {
+			$orders = WobOrdersPayoff::model()->with('wallet')->findAll('id_status!=:id_status_1', array(
+				':id_status_1'=>WobOrders::STATUS_FINISH,
+			));
+		}
+		// получаем все неоплаченные заказы
 		foreach ($orders as $order) {
 			$order->setStatusPay();
 		}
@@ -175,6 +208,16 @@ class Wob
 			return false;
 		}
 		return $contents;
+	}
+
+	/**
+	 * хеш для строки
+	 * @param string $string
+	 * @return string
+	 */
+	public static function encrypting($string="")
+	{
+		return md5($string);
 	}
 
 	/**

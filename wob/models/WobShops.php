@@ -8,6 +8,7 @@
  * @property integer $id_user
  * @property string $url
  * @property string $name
+ * @property string $email_admin
  * @property string $password_api
  * @property string $url_result_api
  * @property integer $id_currency_2
@@ -51,13 +52,14 @@ class WobShops extends WobActiveRecord
 			array('id_user, url, name, create_date, mod_date', 'required'),
 			array('id_user, id_currency_2, is_test_mode, is_enable, is_active', 'numerical', 'integerOnly'=>true),
 			array('url, url_result_api', 'length', 'max'=>2048),
-			array('name, password_api', 'length', 'max'=>1024),
+			array('name, email_admin, password_api', 'length', 'max'=>1024),
+			array('email_admin', 'email'),
 			array('url, url_result_api', 'url',	'pattern'=>'/^({schemes}:\/\/)?(([A-Z0-9][A-Z0-9_-]*)(\.[A-Z0-9][A-Z0-9_-]*)+)/i'),
 			array('url, url_result_api', 'length', 'max'=>2048),
 			array('id_currency_1', 'length', 'max'=>512),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, id_user, url, name, password_api, url_result_api, id_currency_2, is_test_mode, id_currency_1, is_enable, is_active, create_date, mod_date', 'safe', 'on'=>'search'),
+			array('id, id_user, url, name, email_admin, password_api, url_result_api, id_currency_2, is_test_mode, id_currency_1, is_enable, is_active, create_date, mod_date', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -70,7 +72,7 @@ class WobShops extends WobActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'orders'=>array(self::HAS_MANY, 'WobOrders', 'id_shop'),
-			'wallets'=>array(self::HAS_MANY, 'WobShopsWallet', 'id_shop'),
+			'wallets'=>array(self::HAS_MANY, 'WobUsersWallet', 'id_user'),
 			'currency_2'=>array(self::BELONGS_TO, 'WobCurrency', 'id_currency_2'),
 		);
 	}
@@ -85,6 +87,7 @@ class WobShops extends WobActiveRecord
 			'id_user' => 'Id User',
 			'url' => 'Url',
 			'name' => 'Name',
+			'email_admin' => 'Email Admin',
 			'password_api' => 'Password Api',
 			'url_result_api' => 'Url Result Api',
 			'id_currency_2' => 'Валюта счета',
@@ -119,6 +122,7 @@ class WobShops extends WobActiveRecord
 		$criteria->compare('id_user',$this->id_user);
 		$criteria->compare('url',$this->url,true);
 		$criteria->compare('name',$this->name,true);
+		$criteria->compare('email_admin',$this->email_admin,true);
 		$criteria->compare('password_api',$this->password_api,true);
 		$criteria->compare('url_result_api',$this->url_result_api,true);
 		$criteria->compare('id_currency_2',$this->id_currency_2);

@@ -1,6 +1,7 @@
 <?php
 
-Yii::import("application.modules.wob.components.*");
+Yii::app()->attachbehavior('viewRenderer', 'wob.components.behaviors.CAViewRendererBehavior');
+Yii::import("wob.components.*");
 
 class OrdersCommand extends CConsoleCommand
 {
@@ -13,6 +14,12 @@ class OrdersCommand extends CConsoleCommand
 	public function actionFinish()
 	{
 		Wob::startSetStatusFinishOrders();
+		return 0;
+	}
+
+	public function actionPayoff()
+	{
+		Wob::startSetStatusPayoff();
 		return 0;
 	}
 }
