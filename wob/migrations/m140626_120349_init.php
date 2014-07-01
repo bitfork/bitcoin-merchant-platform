@@ -49,6 +49,7 @@ class m140626_120349_init extends CDbMigration
 			'adress' => "varchar(1024) DEFAULT NULL",
 			'hash' => "varchar(128) NOT NULL",
 			'count_confirm' => "int(11) DEFAULT NULL",
+			'email' => "varchar(1024) DEFAULT NULL",
 			'is_active' => "tinyint(1) NOT NULL DEFAULT '1'",
 			'create_date' => "datetime NOT NULL",
 			'mod_date' => "datetime NOT NULL",
@@ -141,6 +142,31 @@ class m140626_120349_init extends CDbMigration
 			'id_shop' => "int(11) NOT NULL",
 			'id_currency' => "int(11) NOT NULL",
 			'volume' => "double NOT NULL",
+			'is_active' => "tinyint(1) NOT NULL DEFAULT '1'",
+			'create_date' => "datetime NOT NULL",
+			'mod_date' => "datetime NOT NULL",
+		));
+
+		$this->createTable('users_wallet', array(
+			'id' => 'pk',
+			'id_user' => "int(11) NOT NULL",
+			'id_currency' => "int(11) NOT NULL",
+			'volume' => "double NOT NULL",
+			'address' => "varchar(128) DEFAULT NULL",
+			'is_address_activate' => "tinyint(1) NOT NULL DEFAULT '1'",
+			'activate_key' => "varchar(128) DEFAULT NULL",
+			'is_active' => "tinyint(1) NOT NULL DEFAULT '1'",
+			'create_date' => "datetime NOT NULL",
+			'mod_date' => "datetime NOT NULL",
+		));
+
+		$this->createTable('orders_payoff', array(
+			'id' => 'pk',
+			'id_wallet' => "int(11) NOT NULL",
+			'id_status' => "int(11) NOT NULL DEFAULT '1'",
+			'amount' => "double NOT NULL",
+			'fee' => "double DEFAULT NULL",
+			'count_confirm' => "int(11) DEFAULT NULL",
 			'is_active' => "tinyint(1) NOT NULL DEFAULT '1'",
 			'create_date' => "datetime NOT NULL",
 			'mod_date' => "datetime NOT NULL",
