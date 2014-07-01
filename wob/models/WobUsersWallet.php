@@ -138,7 +138,8 @@ class WobUsersWallet extends WobActiveRecord
 	protected function afterValidate()
 	{
 		parent::afterValidate();
-		if ($this->scenario == self::ON_ADDRESS) {
+		$this->is_address_activate=1;
+		if ($this->scenario == self::ON_ADDRESS and Wob::module()->is_activate_address) {
 			$this->is_address_activate=0;
 			$this->activate_key=Wob::encrypting(microtime());
 		}
