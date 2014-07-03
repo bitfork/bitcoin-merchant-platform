@@ -38,6 +38,7 @@ class ShopController extends WobController
 	public function actionCreate()
 	{
 		$model=new WobShops;
+		$model->is_commission_shop = Wob::module()->isCommissionShopDefault;
 		$model->email_admin = (isset(Yii::app()->user->email)) ? Yii::app()->user->email : null;
 
 		// Uncomment the following line if AJAX validation is needed

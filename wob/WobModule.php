@@ -20,6 +20,8 @@ class WobModule extends CWebModule
 		),
 	);
 	public $walletDefault = 'btc';
+	public $commissionDefault = 0;
+	public $isCommissionShopDefault = 1;
 	public $defaultController='shop';
 	public $initCss = true;
 	public $fileCss = 'bootstrap';

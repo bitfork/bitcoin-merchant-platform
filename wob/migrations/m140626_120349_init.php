@@ -46,6 +46,8 @@ class m140626_120349_init extends CDbMigration
 			'amount_2' => "double DEFAULT NULL",
 			'amount_paid' => "double DEFAULT NULL",
 			'course' => "double DEFAULT NULL",
+			'commission' => "double NOT NULL DEFAULT '0'",
+			'volume_commission' => "double DEFAULT NULL",
 			'adress' => "varchar(1024) DEFAULT NULL",
 			'hash' => "varchar(128) NOT NULL",
 			'count_confirm' => "int(11) DEFAULT NULL",

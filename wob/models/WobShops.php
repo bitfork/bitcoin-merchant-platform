@@ -168,7 +168,13 @@ class WobShops extends WobActiveRecord
 				}
 			}
 		}
-		$this->id_user = Yii::app()->user->getId();
+		if ($this->isNewRecord) {
+			$this->id_user = Yii::app()->user->getId();
+			$this->commission = Wob::module()->commissionDefault;
+			if ($this->is_commission_shop===null) {
+				$this->is_commission_shop = Wob::module()->isCommissionShopDefault;
+			}
+		}
 		return parent::beforeValidate();
 	}
 

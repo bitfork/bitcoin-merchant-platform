@@ -14,6 +14,8 @@
  * @property double $amount_2
  * @property double $amount_paid
  * @property double $course
+ * @property double $commission
+ * @property double $volume_commission
  * @property string $adress
  * @property string $hash
  * @property integer $count_confirm
@@ -49,13 +51,13 @@ class WobOrders extends WobActiveRecord
 		return array(
 			array('id_shop, amount_2, create_date, mod_date', 'required'),
 			array('id_shop, id_status, id_order_shop, id_currency_1, id_currency_2, count_confirm, is_active', 'numerical', 'integerOnly'=>true),
-			array('amount_1, amount_2, amount_paid, course', 'numerical'),
+			array('amount_1, amount_2, amount_paid, course, commission, volume_commission', 'numerical'),
 			array('adress, email', 'length', 'max'=>1024),
 			array('hash', 'length', 'max'=>128),
 			array('note', 'length', 'max'=>2048),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, id_shop, id_status, id_order_shop, id_currency_1, id_currency_2, amount_1, amount_2, amount_paid, course, adress, hash, count_confirm, email, note, is_active, create_date, mod_date', 'safe', 'on'=>'search'),
+			array('id, id_shop, id_status, id_order_shop, id_currency_1, id_currency_2, amount_1, amount_2, amount_paid, course, commission, volume_commission, adress, hash, count_confirm, email, note, is_active, create_date, mod_date', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -90,6 +92,8 @@ class WobOrders extends WobActiveRecord
 			'amount_2' => 'Цена в магазине',
 			'amount_paid' => 'Amount Paid',
 			'course' => 'Course',
+			'commission' => 'Commission',
+			'volume_commission' => 'Volume Commission',
 			'adress' => 'Adress',
 			'hash' => 'Hash',
 			'count_confirm' => 'Count Confirm',
@@ -129,6 +133,8 @@ class WobOrders extends WobActiveRecord
 		$criteria->compare('amount_2',$this->amount_2);
 		$criteria->compare('amount_paid',$this->amount_paid);
 		$criteria->compare('course',$this->course);
+		$criteria->compare('commission',$this->commission);
+		$criteria->compare('volume_commission',$this->volume_commission);
 		$criteria->compare('adress',$this->adress,true);
 		$criteria->compare('hash',$this->hash,true);
 		$criteria->compare('count_confirm',$this->count_confirm);
@@ -365,6 +371,13 @@ class WobOrders extends WobActiveRecord
 
 		$this->course = $pair->course;
 		$this->amount_1 = $this->amount_2 / $this->course;
+		$this->commission = $this->shop->commission;
+		$this->volume_commission = 0;
+		// если коммисию берем с пользователя то к стоимости нужно добавить размер коммиссии
+		if ($this->shop->is_commission_shop==0) {
+			$this->volume_commission = $this->amount_1 * $this->commission / 100;
+			$this->amount_1 = $this->amount_1 + $this->volume_commission;
+		}
 
 		if ($this->save()) {
 			return true;
@@ -480,7 +493,8 @@ class WobOrders extends WobActiveRecord
 
 		$transaction = Yii::app()->db->beginTransaction();
 		try {
-			if (WobUsersWallet::up($this->shop->id_user, $this->amount_paid, $this->id_currency_1)) {
+			$paid = $this->amount_paid - $this->volume_commission;
+			if (WobUsersWallet::up($this->shop->id_user, $paid, $this->id_currency_1)) {
 				$this->id_status = self::STATUS_FINISH;
 				if ($this->save()) {
 					$transaction->commit();
