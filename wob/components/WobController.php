@@ -1,7 +1,7 @@
 <?php
 class WobController extends CController
 {
-	public $layout = 'wob.views.layouts.wob';
+	public $layout;
 	public $menu=array();
 	public $breadcrumbs=array();
 
@@ -13,6 +13,8 @@ class WobController extends CController
 	public function init()
 	{
 		parent::init();
+		
+		$this->layout = Wob::module()->mainLayout;
 
 		$this->h1 = 'WOB';
 		$this->pageTitle = 'WOB';

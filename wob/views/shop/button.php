@@ -30,6 +30,12 @@ $this->h1 = 'Create button';
 		<?php echo $form->textField($model,'amount',array('class'=>'form-control')); ?>
 		<?php echo $form->error($model,'amount'); ?>
 	</div>
+	
+	<div class="form-group">
+		<?php echo $form->labelEx($model,'note'); ?>
+		<?php echo $form->textField($model,'note',array('class'=>'form-control')); ?>
+		<?php echo $form->error($model,'note'); ?>
+	</div>
 
 	<div class="form-group">
 		<?php echo $form->labelEx($model,'currency_code'); ?>

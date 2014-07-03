@@ -14,6 +14,8 @@
  * @property integer $id_currency_2
  * @property string $id_currency_1
  * @property integer $is_test_mode
+ * @property integer $is_commission_shop
+ * @property double $commission
  * @property integer $is_enable
  * @property integer $is_active
  * @property string $create_date
@@ -50,7 +52,8 @@ class WobShops extends WobActiveRecord
 		// will receive user inputs.
 		return array(
 			array('id_user, url, name, create_date, mod_date', 'required'),
-			array('id_user, id_currency_2, is_test_mode, is_enable, is_active', 'numerical', 'integerOnly'=>true),
+			array('id_user, id_currency_2, is_test_mode, is_commission_shop, is_enable, is_active', 'numerical', 'integerOnly'=>true),
+			array('commission', 'numerical'),
 			array('url, url_result_api', 'length', 'max'=>2048),
 			array('name, email_admin, password_api', 'length', 'max'=>1024),
 			array('email_admin', 'email'),
@@ -59,7 +62,7 @@ class WobShops extends WobActiveRecord
 			array('id_currency_1', 'length', 'max'=>512),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, id_user, url, name, email_admin, password_api, url_result_api, id_currency_2, is_test_mode, id_currency_1, is_enable, is_active, create_date, mod_date', 'safe', 'on'=>'search'),
+			array('id, id_user, url, name, email_admin, password_api, url_result_api, id_currency_2, is_test_mode, is_commission_shop, commission, id_currency_1, is_enable, is_active, create_date, mod_date', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -93,6 +96,8 @@ class WobShops extends WobActiveRecord
 			'id_currency_2' => 'Валюта счета',
 			'id_currency_1' => 'Способы оплаты',
 			'is_test_mode' => 'Режим',
+			'is_commission_shop' => 'Is Commission Shop',
+			'commission' => 'Commission',
 			'is_enable' => 'Is Enable',
 			'is_active' => 'Is Active',
 			'create_date' => 'Create Date',
@@ -128,6 +133,8 @@ class WobShops extends WobActiveRecord
 		$criteria->compare('id_currency_2',$this->id_currency_2);
 		$criteria->compare('id_currency_1',$this->id_currency_1,true);
 		$criteria->compare('is_test_mode',$this->is_test_mode);
+		$criteria->compare('is_commission_shop',$this->is_commission_shop);
+		$criteria->compare('commission',$this->commission);
 		$criteria->compare('is_enable',$this->is_enable);
 		$criteria->compare('is_active',$this->is_active);
 		$criteria->compare('create_date',$this->create_date,true);
@@ -163,6 +170,30 @@ class WobShops extends WobActiveRecord
 		}
 		$this->id_user = Yii::app()->user->getId();
 		return parent::beforeValidate();
+	}
+
+	protected function afterSave()
+	{
+		parent::afterSave();
+
+		if (!is_array($this->id_currency_1) and !empty($this->id_currency_1)) {
+			$this->id_currency_1 = explode(',', $this->id_currency_1);
+		}
+		if (!empty($this->id_currency_1)) {
+			foreach ($this->id_currency_1 as $id_currency) {
+				$wallet = WobUsersWallet::model()->find('id_user=:id_user and id_currency=:id_currency', array(
+					':id_user'=>$this->id_user,
+					':id_currency'=>$id_currency,
+				));
+				if ($wallet===null) {
+					$wallet = new WobUsersWallet();
+					$wallet->id_currency = $id_currency;
+					$wallet->id_user = $this->id_user;
+					$wallet->volume = 0;
+					$wallet->save();
+				}
+			}
+		}
 	}
 
 	/**

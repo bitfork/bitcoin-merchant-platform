@@ -33,6 +33,9 @@
 
 		<b><?php echo CHtml::encode($data->getAttributeLabel('amount_2')); ?>:</b>
 		<?php echo ViewPrice::format($data->amount_2, $data->currency_2->code, $data->currency_2->round); ?>
+		
+		<br />
+		<?php echo CHtml::encode($data->note); ?>
 	</fieldset>
 
 </div>

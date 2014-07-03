@@ -6,6 +6,7 @@ class WobModule extends CWebModule
 {
 	public $isLocal = YII_DEBUG;
 	public $baseLayout = 'wob.views.layouts.main';
+	public $mainLayout = 'wob.views.layouts.wob';
 	public $payLayout = 'wob.views.layouts.pay';
 	public $enableLogging = false;
 	public $wallets = array(

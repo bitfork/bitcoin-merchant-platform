@@ -6,6 +6,7 @@ class WobButtonForm extends CFormModel
 	public $merchant_id;
 	public $id_order_shop;
 	public $amount;
+	public $note;
 	public $currency_code;
 	public $currency_code_pay;
 
@@ -20,6 +21,7 @@ class WobButtonForm extends CFormModel
 			array('merchant_id, id_order_shop', 'numerical', 'integerOnly'=>true),
 			array('amount', 'numerical'),
 			array('currency_code, currency_code_pay', 'length', 'max'=>3),
+			array('note', 'length', 'max'=>2048),
 		);
 	}
 
@@ -34,6 +36,7 @@ class WobButtonForm extends CFormModel
 			'merchant_id'=>'Мерчант id',
 			'id_order_shop'=>'Номер заказа в магазине',
 			'amount'=>'Сумма к оплате',
+			'note'=>'Описание услуги для пользователя',
 			'currency_code'=>'Валюта в которой ваставленна сумма',
 			'currency_code_pay'=>'Валюта в которой будет оплачивать',
 		);

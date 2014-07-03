@@ -113,6 +113,7 @@ class WalletController extends WobController
 		}
 
 		$this->render('payoff_create',array(
+			'modelWallet'=>$model,
 			'model'=>$modelPayoff,
 		));
 	}

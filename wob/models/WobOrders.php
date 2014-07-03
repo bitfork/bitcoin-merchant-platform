@@ -18,6 +18,7 @@
  * @property string $hash
  * @property integer $count_confirm
  * @property string $email
+ * @property string $note
  * @property integer $is_active
  * @property string $create_date
  * @property string $mod_date
@@ -51,9 +52,10 @@ class WobOrders extends WobActiveRecord
 			array('amount_1, amount_2, amount_paid, course', 'numerical'),
 			array('adress, email', 'length', 'max'=>1024),
 			array('hash', 'length', 'max'=>128),
+			array('note', 'length', 'max'=>2048),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, id_shop, id_status, id_order_shop, id_currency_1, id_currency_2, amount_1, amount_2, amount_paid, course, adress, hash, count_confirm, email, is_active, create_date, mod_date', 'safe', 'on'=>'search'),
+			array('id, id_shop, id_status, id_order_shop, id_currency_1, id_currency_2, amount_1, amount_2, amount_paid, course, adress, hash, count_confirm, email, note, is_active, create_date, mod_date', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -92,6 +94,7 @@ class WobOrders extends WobActiveRecord
 			'hash' => 'Hash',
 			'count_confirm' => 'Count Confirm',
 			'email' => 'Email',
+			'note' => 'Note',
 			'is_active' => 'Is Active',
 			'create_date' => 'Create Date',
 			'mod_date' => 'Mod Date',
@@ -130,6 +133,7 @@ class WobOrders extends WobActiveRecord
 		$criteria->compare('hash',$this->hash,true);
 		$criteria->compare('count_confirm',$this->count_confirm);
 		$criteria->compare('email',$this->email,true);
+		$criteria->compare('note',$this->note,true);
 		$criteria->compare('is_active',$this->is_active);
 		$criteria->compare('create_date',$this->create_date,true);
 		$criteria->compare('mod_date',$this->mod_date,true);

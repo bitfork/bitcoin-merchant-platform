@@ -260,4 +260,22 @@ class WobUsersWallet extends WobActiveRecord
 		}
 		return WobCurrency::model()->pay()->findAll($criteria);
 	}
+
+	/**
+	 * вернет сумму заявок на вывод
+	 * @param $id_status
+	 * @return CActiveDataProvider
+	 */
+	public function getSumPayoff($id_status)
+	{
+		$criteria=new CDbCriteria;
+		$criteria->select = 'sum(amount) as amount';
+		$criteria->condition = 'id_wallet=:id_wallet and id_status=:id_status';
+		$criteria->params = array(
+			':id_wallet'=>$this->id,
+			':id_status'=>$id_status,
+		);
+		$payoff = WobOrdersPayoff::model()->find($criteria);
+		return ($payoff!==null) ? $payoff->amount : 0;
+	}
 }

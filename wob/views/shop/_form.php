@@ -59,7 +59,7 @@
 	<div class="form-group">
 		<?php echo $form->labelEx($model,'id_currency_1'); ?>
 		<?php echo CHtml::dropDownList(
-			'Shops[id_currency_1][]',
+			'WobShops[id_currency_1][]',
 			$model->getCurrencyPay(),
 			CHtml::listData(WobCurrency::model()->pay()->findAll(), 'id', 'name'),
 			array('empty'=> 'Выбирите способ', 'multiple' => 'multiple', 'class'=>'form-control')
@@ -73,6 +73,12 @@
 		<?php echo $form->error($model,'is_test_mode'); ?>
 	</div>
 
+	<div class="form-group">
+		<?php echo $form->labelEx($model,'is_commission_shop'); ?><br />
+		<?php echo $form->radioButtonList($model,'is_commission_shop',array('0'=>'Комиссия добавляется к стоимости счета','1'=>'Комиссия вычиталась из получаемых мной денег')); ?>
+		<?php echo $form->error($model,'is_commission_shop'); ?>
+	</div>
+	
 	<?php echo $form->errorSummary($model, '', '', array('class'=>'alert alert-danger')); ?>
 
 	<div class="form-group buttons">
