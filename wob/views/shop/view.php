@@ -3,7 +3,6 @@
 /* @var $model WobShops */
 
 $this->breadcrumbs=array(
-	'Shops'=>array('index'),
 	$model->name,
 );
 
@@ -15,27 +14,123 @@ $this->menu=array(
 );
 $this->h1 = 'View Shops #'. $model->id;
 ?>
-
-<?php $this->widget('zii.widgets.CDetailView', array(
-	'data'=>$model,
-	'attributes'=>array(
+<h3>Статистика оплат</h3>
+<?php $this->widget('zii.widgets.grid.CGridView', array(
+	'id'=>'orders-grid',
+	'dataProvider'=>$orderProvider,
+	'columns'=>array(
 		'id',
-		'url',
-		'name',
-		'email_admin',
-		'password_api',
-		'url_result_api',
 		array(
-			'name'=>'id_currency_2',
-			'value'=>$model->currency_2->name,
+			'name'=>'create_date',
+			'type'=>'raw',
+			'value'=>'date("d.m.Y H:i", strtotime($data->create_date))',
+		),
+		'note',
+		'email',
+		array(
+			'name'=>'amount_1',
+			'type'=>'raw',
+			'value'=>'ViewPrice::format($data->amount_1, $data->currency_1->code, $data->currency_1->round)',
 		),
 		array(
-			'name'=>'id_currency_1',
-			'value'=>$model->strCurrencyPay,
+			'name'=>'amount_2',
+			'type'=>'raw',
+			'value'=>'ViewPrice::format($data->amount_2, $data->currency_2->code, $data->currency_2->round)',
 		),
 		array(
-			'name'=>'is_test_mode',
-			'value'=>$model->getStrIsTestMode(),
+			'name'=>'course',
+			'type'=>'raw',
+			'value'=>'ViewPrice::format($data->course, $data->currency_2->code, $data->currency_2->round)',
 		),
 	),
+	'itemsCssClass'=>'table',
+	'template'=>'{items}{summary}{pager}',
+	'summaryCssClass'=>'pull-right',
+	'pagerCssClass'=>'pagination-wrapper',
+	'pager' => array(
+		'firstPageLabel'=>'&laquo;',
+		'prevPageLabel'=>'←',
+		'nextPageLabel'=>'→',
+		'lastPageLabel'=>'&raquo;',
+		'maxButtonCount'=>'10',
+		'header'=>'',
+		'cssFile'=>false,
+		'firstPageCssClass'=>'',
+		'internalPageCssClass'=>'',
+		'lastPageCssClass'=>'',
+		'nextPageCssClass'=>'',
+		'previousPageCssClass'=>'',
+		'selectedPageCssClass'=>'active',
+		'hiddenPageCssClass'=>'disabled',
+		'htmlOptions'=>array('class'=>'pagination'),
+	),
 )); ?>
+<?php if ($payoffProvider!==null) { ?>
+	<hr />
+	<h3>
+		Статистика выплат
+		<div class="pull-right">
+			<select name="id_wallet_payoff_select">
+				<?php foreach ($wallets as $wallet) { ?>
+				<option <?php echo ($wallet->id==$wallet_select_id) ? 'selected="selected"' : ''; ?> value="<?php echo $wallet->id; ?>">
+					<?php echo $wallet->currency->code; ?>
+				</option>
+				<?php } ?>
+			</select>
+		</div>
+	</h3>
+	<?php
+	$js = "
+		$('select[name=id_wallet_payoff_select]').change(function(){
+			var id_wallet = $(this).val();
+			$.ajax({
+				type: 'post',
+				data: 'id_wallet_payoff_select='+id_wallet,
+				url: location.href,
+				success: function(html){
+					location.href = location.href;
+				}
+			});
+		});
+	";
+	Yii::app()->clientScript->registerScript('wallet_payoff_select',$js);
+	?>
+	<?php $this->widget('zii.widgets.grid.CGridView', array(
+		'id'=>'payoffs-grid',
+		'dataProvider'=>$payoffProvider,
+		'columns'=>array(
+			array(
+				'name'=>'create_date',
+				'type'=>'raw',
+				'value'=>'date("d.m.Y H:i", strtotime($data->create_date))',
+			),
+			array(
+				'name'=>'amount',
+				'type'=>'raw',
+				'value'=>'ViewPrice::format($data->amount, $data->wallet->currency->code, $data->wallet->currency->round)',
+			),
+			'status.name',
+		),
+		'itemsCssClass'=>'table',
+		'template'=>'{items}{summary}{pager}',
+		'summaryCssClass'=>'pull-right',
+		'pagerCssClass'=>'pagination-wrapper',
+		'pager' => array(
+			'firstPageLabel'=>'&laquo;',
+			'prevPageLabel'=>'←',
+			'nextPageLabel'=>'→',
+			'lastPageLabel'=>'&raquo;',
+			'maxButtonCount'=>'10',
+			'header'=>'',
+			'cssFile'=>false,
+			'firstPageCssClass'=>'',
+			'internalPageCssClass'=>'',
+			'lastPageCssClass'=>'',
+			'nextPageCssClass'=>'',
+			'previousPageCssClass'=>'',
+			'selectedPageCssClass'=>'active',
+			'hiddenPageCssClass'=>'disabled',
+			'htmlOptions'=>array('class'=>'pagination'),
+		),
+	)); ?>
+<?php } ?>

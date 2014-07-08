@@ -33,6 +33,7 @@
 					'htmlOptions'=>array('class'=>'nav navbar-nav'),
 					'activeCssClass'=>'active',
 				)); ?>
+				<?php $this->widget('wob.components.widgets.WobCourse'); ?>
 			</div><!--/.nav-collapse -->
 		</div>
 	</div>

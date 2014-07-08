@@ -75,6 +75,7 @@ class WobModule extends CWebModule
 		if ($this->fileCss=='bootstrap') {
 			$cs->registerCssFile($assetsUrl.'/css/wob.css');
 			$cs->registerCssFile($assetsUrl.'/bootstrap-3.2.0/css/bootstrap.min.css');
+			$cs->registerScriptFile($assetsUrl.'/bootstrap-3.2.0/js/bootstrap.min.js');
 		} else {
 			$cs->registerCssFile($assetsUrl.'/css/default.css');
 		}

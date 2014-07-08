@@ -17,3 +17,9 @@ div.view
 .form-group .error, .errorMessage {
     color: #a94442;
 }
+.m-b-10 {
+    margin-bottom: 10px;
+}
+.pagination-wrapper .pagination {
+    margin: 0;
+}

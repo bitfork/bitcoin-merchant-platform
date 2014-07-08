@@ -3,7 +3,6 @@
 /* @var $model WobShops */
 
 $this->breadcrumbs=array(
-	'Shops'=>array('index'),
 	'Create',
 );
 

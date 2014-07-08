@@ -26,8 +26,31 @@ class ShopController extends WobController
 	 */
 	public function actionView($id)
 	{
+		$payoffProvider = null;
+		if (isset($_POST['id_wallet_payoff_select'])) {
+			Yii::app()->user->setState('wob_select_wallet', (int)$_POST['id_wallet_select']);
+			Yii::app()->end();
+		}
+		$wallets = WobUsersWallet::model()->my()->findAll();
+		$wallet_select_id = false;
+		if (Yii::app()->user->getState('wob_select_wallet')!==null) {
+			$wallet_select_id = Yii::app()->user->getState('wob_select_wallet');
+			$payoffProvider = WobOrdersPayoff::getListByWallet($wallet_select_id);
+		} else {
+			if (count($wallets)>0) {
+				if (Yii::app()->user->getState('wob_select_wallet')===null) {
+					Yii::app()->user->setState('wob_select_wallet', $wallets[0]->id);
+					$wallet_select_id = Yii::app()->user->getState('wob_select_wallet');
+					$payoffProvider = WobOrdersPayoff::getListByWallet($wallet_select_id);
+				}
+			}
+		}
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
+			'orderProvider'=>WobOrders::model()->getListByShop($id),
+			'payoffProvider'=>$payoffProvider,
+			'wallets'=>$wallets,
+			'wallet_select_id'=>$wallet_select_id,
 		));
 	}
 
@@ -126,6 +149,12 @@ class ShopController extends WobController
 	 */
 	public function actionIndex()
 	{
+		$shops = WobShops::model()->my()->findAll();
+		if (count($shops)>0) {
+			$this->redirect(array('/wob/shop/view', 'id'=>$shops[0]->id));
+		}
+		$this->redirect(array('/wob/shop/create'));
+		Yii::app()->user->setState('wob_select_shop', null);
 		$dataProvider=WobShops::model()->getListMy();
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
@@ -144,6 +173,9 @@ class ShopController extends WobController
 		$model=WobShops::model()->my()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
+
+		Yii::app()->user->setState('wob_select_shop', $model->id);
+
 		return $model;
 	}
 
