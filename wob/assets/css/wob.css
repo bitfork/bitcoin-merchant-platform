@@ -23,3 +23,6 @@ div.view
 .pagination-wrapper .pagination {
     margin: 0;
 }
+.dropdown-menu .list-group-item {
+    border: 0;
+}
