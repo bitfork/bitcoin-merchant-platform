@@ -15,16 +15,18 @@
 	'enableAjaxValidation'=>false,
 )); ?>
 
-	<div class="form-group">
-		<?php echo $form->labelEx($model,'id_currency'); ?>
-		<?php echo $form->dropDownList(
-			$model,
-			'id_currency',
-			CHtml::listData(WobUsersWallet::getCurrencyEmpty($model->id_currency), 'id', 'name'),
-			array('class'=>'form-control')
-		); ?>
-		<?php echo $form->error($model,'id_currency'); ?>
-	</div>
+	<?php if ($model->isNewRecord) { ?>
+		<div class="form-group">
+			<?php echo $form->labelEx($model,'id_currency'); ?>
+			<?php echo $form->dropDownList(
+				$model,
+				'id_currency',
+				CHtml::listData(WobUsersWallet::getCurrencyEmpty($model->id_currency), 'id', 'name'),
+				array('class'=>'form-control')
+			); ?>
+			<?php echo $form->error($model,'id_currency'); ?>
+		</div>
+	<?php } ?>
 
 	<div class="form-group">
 		<?php echo $form->labelEx($model,'address'); ?>

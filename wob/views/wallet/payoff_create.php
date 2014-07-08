@@ -3,7 +3,6 @@
 /* @var $model WobUsersWallet */
 
 $this->breadcrumbs=array(
-	'Wallet'=>array('index'),
 	'Заявки на вывод',
 );
 
@@ -13,7 +12,7 @@ $this->menu=array(
 );
 $this->h1 = 'Заявки на вывод';
 ?>
-<h2>Заявка на вывод</h2>
+<h2>Заявка на вывод <?php echo $modelWallet->currency->code; ?></h2>
 
 <div class="form">
 
@@ -25,6 +24,17 @@ $this->h1 = 'Заявки на вывод';
 	// See class documentation of CActiveForm for details on this.
 	'enableAjaxValidation'=>false,
 )); ?>
+
+	<div class="form-group">
+		<strong>Адрес:</strong>
+		<?php echo ($modelWallet->address!='') ? CHtml::encode($modelWallet->address) : Yii::t('main', 'не задан'); ?>
+		<?php if ($modelWallet->address!='') { ?>
+			<?php echo ($modelWallet->is_address_activate==1)? '<span class="label label-success">'. Yii::t('main', 'подтвержден') .'</span>' : '<span class="label label-default">'. Yii::t('main', 'не подтвержден') .'</span>'; ?>
+		<?php } ?>
+		<a class="btn btn-info btn-xs" href="<?php echo $this->createUrl('/wob/wallet/update', array('id'=>$modelWallet->id)); ?>">
+			<span class="glyphicon glyphicon-pencil"></span> <?php echo Yii::t('main', 'Изменить'); ?>
+		</a>
+	</div>
 
 	<div class="form-group">
 		<?php echo $form->labelEx($model,'amount'); ?>
@@ -41,3 +51,5 @@ $this->h1 = 'Заявки на вывод';
 	<?php $this->endWidget(); ?>
 
 </div><!-- form -->
+<hr />
+<?php echo $this->renderPartial('payoff', array('list'=>WobOrdersPayoff::getListByWallet($modelWallet->id))); ?>

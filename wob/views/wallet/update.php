@@ -3,7 +3,6 @@
 /* @var $model WobShops */
 
 $this->breadcrumbs=array(
-	'Wallet'=>array('index'),
 	$model->id=>array('view','id'=>$model->id),
 	'Update',
 );
