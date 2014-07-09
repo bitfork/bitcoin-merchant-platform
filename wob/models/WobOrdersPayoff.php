@@ -164,7 +164,8 @@ class WobOrdersPayoff extends WobActiveRecord
 		$criteria->params = array(
 			':id_wallet'=>$id_wallet
 		);
-		$criteria->order='t.id desc';
+		if (!isset($_GET['WobOrdersPayoff_sort']))
+			$criteria->order='t.id desc';
 		return new CActiveDataProvider('WobOrdersPayoff', array(
 			'criteria'=>$criteria,
 		));

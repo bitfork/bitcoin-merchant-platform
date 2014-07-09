@@ -24,16 +24,16 @@
 				<a class="navbar-brand" href="/"><?php echo CHtml::encode(Yii::app()->name); ?></a>
 			</div>
 			<div class="navbar-collapse collapse">
+				<?php $this->widget('wob.components.widgets.WobCourse'); ?>
 				<?php $this->widget('zii.widgets.CMenu',array(
 					'items'=>array(
-						array('label'=>'Магазины', 'url'=>array('/wob/shop/index')),
+						array('label'=>'Кабинет', 'url'=>array('/wob/shop/index')),
 						array('label'=>'Login', 'url'=>array('/user/login'), 'visible'=>Yii::app()->user->isGuest),
 						array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/user/logout'), 'visible'=>!Yii::app()->user->isGuest)
 					),
-					'htmlOptions'=>array('class'=>'nav navbar-nav'),
+					'htmlOptions'=>array('class'=>'nav navbar-nav  navbar-right'),
 					'activeCssClass'=>'active',
 				)); ?>
-				<?php $this->widget('wob.components.widgets.WobCourse'); ?>
 			</div><!--/.nav-collapse -->
 		</div>
 	</div>

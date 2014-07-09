@@ -251,7 +251,8 @@ class WobOrders extends WobActiveRecord
 		$criteria->params = array(
 			':id_shop'=>$id_shop,
 		);
-		$criteria->order='t.id desc';
+		if (!isset($_GET['WobOrders_sort']))
+			$criteria->order='t.id desc';
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));

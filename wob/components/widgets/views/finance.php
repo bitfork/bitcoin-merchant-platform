@@ -30,7 +30,7 @@
 	</div>
 	<div class="panel-body" id="finance_widget_content">
 		<?php
-		if ($wallet_select!==false) {
+		if ($wallet_select!==false and $wallet_select!==null) {
 			$amount_payoff_new = $wallet_select->getSumPayoff(WobOrders::STATUS_NEW);
 			$amount_payoff_finish = $wallet_select->getSumPayoff(WobOrders::STATUS_FINISH);
 			$balance = $wallet_select->volume;

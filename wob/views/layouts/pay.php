@@ -20,15 +20,19 @@
 
 <div class="navbar navbar-default navbar-static-top" role="navigation">
 	<div class="container">
-		<div class="navbar-header">
-			<a class="navbar-brand" href="/"><?php echo CHtml::encode(Yii::app()->name); ?></a>
+		<div class="row">
+			<div class="col-md-6 col-md-offset-3">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="/"><?php echo CHtml::encode(Yii::app()->name); ?></a>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
 
 <div class="container">
 	<div class="row">
-		<div class="col-md-12">
+		<div class="col-md-6 col-md-offset-3">
 			<div class="panel panel-default">
 				<div class="panel-heading"><strong><?php echo CHtml::encode($this->h1); ?></strong></div>
 				<div class="panel-body">
