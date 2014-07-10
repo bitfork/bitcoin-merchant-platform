@@ -46,7 +46,7 @@
 	<div class="msg-ok" style="display: none"></div>
 	<div class="msg-err myerr" style="display: none"></div>
 	<div class="form-group buttons">
-		<?php echo CHtml::submitButton('Успешная оплата', array('class'=>'btn btn-primary')); ?>
+		<?php echo CHtml::submitButton(WobModule::t('main', 'Successful payment'), array('class'=>'btn btn-primary')); ?>
 	</div>
 <?php $this->endWidget(); ?>
 

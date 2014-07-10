@@ -3,16 +3,16 @@
 /* @var $model WobUsersWallet */
 
 $this->breadcrumbs=array(
-	'Заявки на вывод',
+	WobModule::t('main', 'Application for withdrawal'),
 );
 
 $this->menu=array(
-	array('label'=>'List Wallet', 'url'=>array('index')),
-	array('label'=>'Payoff', 'url'=>array('payoff', 'id'=>$model->id_wallet)),
+	array('label'=>WobModule::t('main', 'List Wallet'), 'url'=>array('index')),
+	array('label'=>WobModule::t('main', 'Payoff'), 'url'=>array('payoff', 'id'=>$model->id_wallet)),
 );
-$this->h1 = 'Заявки на вывод';
+$this->h1 = WobModule::t('main', 'Application for withdrawal');
 ?>
-<h2>Заявка на вывод <?php echo $modelWallet->currency->code; ?></h2>
+<h2><?php echo WobModule::t('main', 'Application for withdrawal {code}', array('{code}'=>$modelWallet->currency->code)); ?></h2>
 
 <div class="form">
 
@@ -26,13 +26,13 @@ $this->h1 = 'Заявки на вывод';
 )); ?>
 
 	<div class="form-group">
-		<strong>Адрес:</strong>
-		<?php echo ($modelWallet->address!='') ? CHtml::encode($modelWallet->address) : Yii::t('main', 'не задан'); ?>
+		<strong><?php echo WobModule::t('main', 'Address'); ?>:</strong>
+		<?php echo ($modelWallet->address!='') ? CHtml::encode($modelWallet->address) : WobModule::t('main', 'not specified'); ?>
 		<?php if ($modelWallet->address!='') { ?>
-			<?php echo ($modelWallet->is_address_activate==1)? '<span class="label label-success">'. Yii::t('main', 'подтвержден') .'</span>' : '<span class="label label-default">'. Yii::t('main', 'не подтвержден') .'</span>'; ?>
+			<?php echo ($modelWallet->is_address_activate==1)? '<span class="label label-success">'. WobModule::t('main', 'confirmed') .'</span>' : '<span class="label label-default">'. WobModule::t('main', 'not confirmed') .'</span>'; ?>
 		<?php } ?>
 		<a class="btn btn-info btn-xs" href="<?php echo $this->createUrl('/wob/wallet/update', array('id'=>$modelWallet->id)); ?>">
-			<span class="glyphicon glyphicon-pencil"></span> <?php echo Yii::t('main', 'Изменить'); ?>
+			<span class="glyphicon glyphicon-pencil"></span> <?php echo WobModule::t('main', 'Edit'); ?>
 		</a>
 	</div>
 
@@ -45,7 +45,7 @@ $this->h1 = 'Заявки на вывод';
 	<?php echo $form->errorSummary($model, '', '', array('class'=>'alert alert-danger')); ?>
 
 	<div class="form-group buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save', array('class'=>'btn btn-primary')); ?>
+		<?php echo CHtml::submitButton($model->isNewRecord ? WobModule::t('main', 'Create') : WobModule::t('main', 'Save'), array('class'=>'btn btn-primary')); ?>
 	</div>
 
 	<?php $this->endWidget(); ?>

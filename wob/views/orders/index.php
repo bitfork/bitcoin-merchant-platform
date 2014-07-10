@@ -3,13 +3,13 @@
 /* @var $dataProvider CActiveDataProvider */
 
 $this->breadcrumbs=array(
-	'Orders',
+	WobModule::t('main', 'Orders'),
 );
 
 $this->menu=array(
-	array('label'=>'List Shops', 'url'=>array('/wob/shop/index')),
+	array('label'=>WobModule::t('main', 'List Shops'), 'url'=>array('/wob/shop/index')),
 );
-$this->h1 = 'Orders';
+$this->h1 = WobModule::t('main', 'Orders');
 ?>
 
 <?php $this->widget('zii.widgets.CListView', array(

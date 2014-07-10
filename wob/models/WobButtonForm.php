@@ -33,12 +33,12 @@ class WobButtonForm extends CFormModel
 	public function attributeLabels()
 	{
 		return array(
-			'merchant_id'=>'Мерчант id',
-			'id_order_shop'=>'Номер заказа в магазине',
-			'amount'=>'Сумма к оплате',
-			'note'=>'Описание услуги для пользователя',
-			'currency_code'=>'Валюта в которой ваставленна сумма',
-			'currency_code_pay'=>'Валюта в которой будет оплачивать',
+			'merchant_id'=>WobModule::t('main', 'Merchant id'),
+			'id_order_shop'=>WobModule::t('main', 'Order number in the store'),
+			'amount'=>WobModule::t('main', 'Amount to be paid'),
+			'note'=>WobModule::t('main', 'Service Description for the user'),
+			'currency_code'=>WobModule::t('main', 'Currency in which the amount invoiced'),
+			'currency_code_pay'=>WobModule::t('main', 'Currency in which to pay'),
 		);
 	}
 }

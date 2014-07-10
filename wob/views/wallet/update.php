@@ -4,14 +4,14 @@
 
 $this->breadcrumbs=array(
 	$model->id=>array('view','id'=>$model->id),
-	'Update',
+	WobModule::t('main', 'Update'),
 );
 
 $this->menu=array(
-	array('label'=>'List Wallet', 'url'=>array('index')),
-	array('label'=>'Create Wallet', 'url'=>array('create')),
+	array('label'=>WobModule::t('main', 'List Wallet'), 'url'=>array('index')),
+	array('label'=>WobModule::t('main', 'Create Wallet'), 'url'=>array('create')),
 );
-$this->h1 = 'Update Wallet '. $model->id;
+$this->h1 = WobModule::t('main', 'Update Wallet {id}', array('{id}'=>$model->id));
 ?>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

@@ -5,7 +5,7 @@
 
 <div class="view">
 
-	<?php echo CHtml::link('оплатить', array('/wob/pay/index', 'hash'=>$data->hash), array('class'=>'btn btn-primary')); ?>
+	<?php echo CHtml::link(WobModule::t('main', 'pay'), array('/wob/pay/index', 'hash'=>$data->hash), array('class'=>'btn btn-primary')); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('id_status')); ?>:</b>
@@ -21,11 +21,11 @@
 		<?php echo ViewPrice::format($data->amount_1, $data->currency_1->code, $data->currency_1->round); ?>
 		<br />
 	<?php } else { ?>
-		<b>Не выбран способ оплаты</b>
+		<b><?php echo WobModule::t('main', 'Not selected payment method'); ?></b>
 	<?php } ?>
 
 	<fieldset style="border: 1px solid #C9E0ED;padding: 10px">
-		<legend>Информация с магазина</legend>
+		<legend><?php echo WobModule::t('main', 'Information from the store'); ?></legend>
 
 		<b><?php echo CHtml::encode($data->getAttributeLabel('id_order_shop')); ?>:</b>
 		<?php echo CHtml::encode($data->id_order_shop); ?>

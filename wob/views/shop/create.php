@@ -3,13 +3,13 @@
 /* @var $model WobShops */
 
 $this->breadcrumbs=array(
-	'Create',
+	WobModule::t('main', 'Create'),
 );
 
 $this->menu=array(
-	array('label'=>'List Shops', 'url'=>array('index')),
+	array('label'=>WobModule::t('main', 'List Shops'), 'url'=>array('index')),
 );
-$this->h1 = 'Create Shops';
+$this->h1 = WobModule::t('main', 'Create Shops');
 ?>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

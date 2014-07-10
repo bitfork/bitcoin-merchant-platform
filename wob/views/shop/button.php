@@ -4,10 +4,10 @@
 /* @var $form CActiveForm */
 
 $this->breadcrumbs=array(
-	'Shops'=>array('index'),
-	'Create button',
+	WobModule::t('main', 'Shops')=>array('index'),
+	WobModule::t('main', 'Create button'),
 );
-$this->h1 = 'Create button';
+$this->h1 = WobModule::t('main', 'Create button');
 ?>
 
 <div class="form">
@@ -22,8 +22,6 @@ $this->h1 = 'Create button';
 		'afterValidate'=>'js:formAfterValidate',
 	),
 )); ?>
-
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
 
 	<div class="form-group">
 		<?php echo $form->labelEx($model,'amount'); ?>
@@ -61,10 +59,10 @@ $this->h1 = 'Create button';
 
 	<div class="msg-ok" style="display: none"></div>
 	<div class="msg-err myerr" style="display: none"></div>
-	<?php echo $form->errorSummary($model, '<b>Warning!</b>', '', array('class'=>'alert alert-danger')); ?>
+	<?php echo $form->errorSummary($model, '', '', array('class'=>'alert alert-danger')); ?>
 
 	<div class="form-group buttons">
-		<?php echo CHtml::submitButton('Create', array('class'=>'btn btn-primary')); ?>
+		<?php echo CHtml::submitButton(WobModule::t('main', 'Create'), array('class'=>'btn btn-primary')); ?>
 	</div>
 <?php $this->endWidget(); ?>
 

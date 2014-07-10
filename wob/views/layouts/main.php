@@ -27,9 +27,8 @@
 				<?php $this->widget('wob.components.widgets.WobCourse'); ?>
 				<?php $this->widget('zii.widgets.CMenu',array(
 					'items'=>array(
-						array('label'=>'Кабинет', 'url'=>array('/wob/shop/index')),
-						array('label'=>'Login', 'url'=>array('/user/login'), 'visible'=>Yii::app()->user->isGuest),
-						array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/user/logout'), 'visible'=>!Yii::app()->user->isGuest)
+						array('label'=>WobModule::t('main', 'Account'), 'url'=>array('/wob/shop/index')),
+						array('label'=>WobModule::t('main', 'Logout ({user_name})', array('{user_name}'=>Yii::app()->user->name)), 'url'=>array('/user/logout'), 'visible'=>!Yii::app()->user->isGuest)
 					),
 					'htmlOptions'=>array('class'=>'nav navbar-nav  navbar-right'),
 					'activeCssClass'=>'active',

@@ -28,11 +28,11 @@
 					<?php echo ViewPrice::format($order->course, $order->currency_2->code, $order->currency_2->round); ?>
 				</li>
 			<?php } else { ?>
-				<li class="list-group-item"><b>Не выбран способ оплаты</b></li>
+				<li class="list-group-item"><b><?php echo WobModule::t('main', 'Not selected payment method'); ?></b></li>
 			<?php } ?>
 		</ul>
 	</div>
 	<div class="col-md-6">
-		<?php echo CHtml::link('Способ оплаты', array('currency', 'hash'=>$order->hash), array('class'=>'btn btn-primary btn-block')); ?>
+		<?php echo CHtml::link(WobModule::t('main', 'Method of payment'), array('currency', 'hash'=>$order->hash), array('class'=>'btn btn-primary btn-block')); ?>
 	</div>
 </div>

@@ -87,15 +87,15 @@ class WobOrdersPayoff extends WobActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
-			'id_wallet' => 'Id Wallet',
-			'id_status' => 'Id Status',
-			'amount' => 'Amount',
-			'fee' => 'Fee',
-			'count_confirm' => 'Count Confirm',
-			'is_active' => 'Is Active',
-			'create_date' => 'Create Date',
-			'mod_date' => 'Mod Date',
+			'id' => WobModule::t('main', 'ID'),
+			'id_wallet' => WobModule::t('main', 'Id Wallet'),
+			'id_status' => WobModule::t('main', 'Id Status'),
+			'amount' => WobModule::t('main', 'Amount'),
+			'fee' => WobModule::t('main', 'Fee'),
+			'count_confirm' => WobModule::t('main', 'Count Confirm'),
+			'is_active' => WobModule::t('main', 'Is Active'),
+			'create_date' => WobModule::t('main', 'Create Date'),
+			'mod_date' => WobModule::t('main', 'Mod Date'),
 		);
 	}
 

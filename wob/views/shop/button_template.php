@@ -10,6 +10,6 @@
 	<?php echo CHtml::hiddenField('currency_code',$model->currency_code); ?>
 	<?php echo CHtml::hiddenField('currency_code_pay',$model->currency_code_pay); ?>
 
-	<?php echo CHtml::submitButton('Pay', array('class'=>'btn btn-success')); ?>
+	<?php echo CHtml::submitButton(WobModule::t('main', 'Pay'), array('class'=>'btn btn-success')); ?>
 
 <?php $this->endWidget(); ?>

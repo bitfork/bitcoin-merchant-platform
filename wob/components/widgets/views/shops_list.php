@@ -5,6 +5,6 @@
 		</li>
 	<?php } ?>
 	<li>
-		<?php echo CHtml::link('Новый сайт +', array('/wob/shop/create')); ?>
+		<?php echo CHtml::link(WobModule::t('main', 'New site +'), array('/wob/shop/create')); ?>
 	</li>
 </ul>

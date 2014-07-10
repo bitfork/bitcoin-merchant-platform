@@ -86,22 +86,22 @@ class WobShops extends WobActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
-			'id_user' => 'Id User',
-			'url' => 'Url',
-			'name' => 'Name',
-			'email_admin' => 'Email Admin',
-			'password_api' => 'Password Api',
-			'url_result_api' => 'Url Result Api',
-			'id_currency_2' => 'Валюта счета',
-			'id_currency_1' => 'Способы оплаты',
-			'is_test_mode' => 'Режим',
-			'is_commission_shop' => 'Is Commission Shop',
-			'commission' => 'Commission',
-			'is_enable' => 'Is Enable',
-			'is_active' => 'Is Active',
-			'create_date' => 'Create Date',
-			'mod_date' => 'Mod Date',
+			'id' => WobModule::t('main', 'ID'),
+			'id_user' => WobModule::t('main', 'Id User'),
+			'url' => WobModule::t('main', 'Url'),
+			'name' => WobModule::t('main', 'Name'),
+			'email_admin' => WobModule::t('main', 'Email Admin'),
+			'password_api' => WobModule::t('main', 'Password Api'),
+			'url_result_api' => WobModule::t('main', 'Url Result Api'),
+			'id_currency_2' => WobModule::t('main', 'Currency order'),
+			'id_currency_1' => WobModule::t('main', 'Payment Methods'),
+			'is_test_mode' => WobModule::t('main', 'Mode'),
+			'is_commission_shop' => WobModule::t('main', 'Is Commission Shop'),
+			'commission' => WobModule::t('main', 'Commission'),
+			'is_enable' => WobModule::t('main', 'Is Enable'),
+			'is_active' => WobModule::t('main', 'Is Active'),
+			'create_date' => WobModule::t('main', 'Create Date'),
+			'mod_date' => WobModule::t('main', 'Mod Date'),
 		);
 	}
 
@@ -247,7 +247,7 @@ class WobShops extends WobActiveRecord
 	public function getStrIsTestMode()
 	{
 		if ($this->is_test_mode!=1)
-			return 'тестовый';
-		return 'рабочий';
+			return WobModule::t('main', 'test');
+		return WobModule::t('main', 'worker');
 	}
 }

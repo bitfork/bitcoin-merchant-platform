@@ -13,7 +13,7 @@ class WobShopCommissionForm extends CFormModel
 	public function attributeLabels()
 	{
 		return array(
-			'is_commission_shop' => 'is_commission_shop',
+			'is_commission_shop' => WobModule::t('main', 'Is Commission Shop'),
 		);
 	}
 }

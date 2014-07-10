@@ -3,16 +3,16 @@
 /* @var $model WobShops */
 
 $this->breadcrumbs=array(
-	'Заявки на вывод',
+	WobModule::t('main', 'Application for withdrawal'),
 );
 
 $this->menu=array(
-	array('label'=>'List Wallet', 'url'=>array('index')),
-	array('label'=>'Create Payoff', 'url'=>array('payoffCreate', 'id'=>$model->id)),
+	array('label'=>WobModule::t('main', 'List Wallet'), 'url'=>array('index')),
+	array('label'=>WobModule::t('main', 'Create Payoff'), 'url'=>array('payoffCreate', 'id'=>$model->id)),
 );
-$this->h1 = 'Заявки на вывод';
+$this->h1 = WobModule::t('main', 'Application for withdrawal');
 ?>
-<h2>Заявки на вывод</h2>
+<h2><?php echo WobModule::t('main', 'Application for withdrawal'); ?></h2>
 
 <?php $this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'payoffs-grid',

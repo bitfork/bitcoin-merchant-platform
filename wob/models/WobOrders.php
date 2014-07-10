@@ -82,26 +82,26 @@ class WobOrders extends WobActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
-			'id_shop' => 'Id Shop',
-			'id_status' => 'Id Status',
-			'id_order_shop' => 'Id Order Shop',
-			'id_currency_1' => 'Id Currency 1',
-			'id_currency_2' => 'Id Currency 2',
-			'amount_1' => 'К оплате',
-			'amount_2' => 'Цена в магазине',
-			'amount_paid' => 'Amount Paid',
-			'course' => 'Course',
-			'commission' => 'Commission',
-			'volume_commission' => 'Volume Commission',
-			'adress' => 'Adress',
-			'hash' => 'Hash',
-			'count_confirm' => 'Count Confirm',
-			'email' => 'Email',
-			'note' => 'Note',
-			'is_active' => 'Is Active',
-			'create_date' => 'Create Date',
-			'mod_date' => 'Mod Date',
+			'id' => WobModule::t('main', 'ID'),
+			'id_shop' => WobModule::t('main', 'Id Shop'),
+			'id_status' => WobModule::t('main', 'Id Status'),
+			'id_order_shop' => WobModule::t('main', 'Id Order Shop'),
+			'id_currency_1' => WobModule::t('main', 'Id Currency 1'),
+			'id_currency_2' => WobModule::t('main', 'Id Currency 2'),
+			'amount_1' => WobModule::t('main', 'Payable'),
+			'amount_2' => WobModule::t('main', 'Price in store'),
+			'amount_paid' => WobModule::t('main', 'Amount Paid'),
+			'course' => WobModule::t('main', 'Course'),
+			'commission' => WobModule::t('main', 'Commission'),
+			'volume_commission' => WobModule::t('main', 'Volume Commission'),
+			'adress' => WobModule::t('main', 'Adress'),
+			'hash' => WobModule::t('main', 'Hash'),
+			'count_confirm' => WobModule::t('main', 'Count Confirm'),
+			'email' => WobModule::t('main', 'Email'),
+			'note' => WobModule::t('main', 'Note'),
+			'is_active' => WobModule::t('main', 'Is Active'),
+			'create_date' => WobModule::t('main', 'Create Date'),
+			'mod_date' => WobModule::t('main', 'Mod Date'),
 		);
 	}
 
@@ -166,7 +166,7 @@ class WobOrders extends WobActiveRecord
 		if ($this->isNewRecord and count($this->getErrors())==0) {
 			$shop=WobShops::model()->findByPk($this->id_shop);
 			if ($shop===null) {
-				$this->addError('id_shop', 'Магазин в системе не найден');
+				$this->addError('id_shop', WobModule::t('main', 'Shop in the system is not found'));
 			}
 		}
 	}
@@ -199,7 +199,7 @@ class WobOrders extends WobActiveRecord
 			$view = false;
 			if (Wob::module()->mail_new_client) {
 				if ($this->id_status == self::STATUS_NEW) {
-					$subject = 'Вы перешли к оплате';
+					$subject = WobModule::t('main', 'You passed for payment');
 					$message = array(
 						'shop_name'=>$this->shop->name,
 						'amount'=>ViewPrice::format($this->amount_1, $this->currency_1->code, $this->currency_1->round),
@@ -208,7 +208,7 @@ class WobOrders extends WobActiveRecord
 					$view = 'new_order_client';
 				}
 				if ($this->id_status == self::STATUS_READY) {
-					$subject = 'Вы оплатили заказ';
+					$subject = WobModule::t('main', 'You paid the order');
 					$message = array(
 						'shop_name'=>$this->shop->name,
 						'amount'=>ViewPrice::format($this->amount_1, $this->currency_1->code, $this->currency_1->round),
@@ -224,7 +224,7 @@ class WobOrders extends WobActiveRecord
 			$message = '';
 			$view = false;
 			if (Wob::module()->mail_new_admin and $this->id_status == self::STATUS_READY) {
-				$subject = 'Оплата в вашем магазине';
+				$subject = WobModule::t('main', 'Payment in your store');
 				$message = array(
 					'shop_name'=>$this->shop->name,
 					'id_order_shop'=>$this->id_order_shop,
@@ -274,7 +274,7 @@ class WobOrders extends WobActiveRecord
 		if (isset($param['currency_code']) and !empty($param['currency_code'])) {
 			$currency = WobCurrency::model()->find('code=:code', array(':code'=>$param['currency_code']));
 			if ($currency===null) {
-				$this->addError('id_currency_2', 'Указанная валюта не найдена');
+				$this->addError('id_currency_2', WobModule::t('main', 'This currency is not found'));
 				return false;
 			}
 			$this->id_currency_2 = $currency->id;
@@ -282,11 +282,11 @@ class WobOrders extends WobActiveRecord
 			//если валюта не была указана нужно посмотреть в настройках магазина
 			$shop = WobShops::model()->findByPk($this->id_shop);
 			if ($shop===null) {
-				$this->addError('id_shop', 'Магазин в системе не найден');
+				$this->addError('id_shop', WobModule::t('main', 'Shop in the system is not found'));
 				return false;
 			}
 			if (empty($shop->id_currency_2)) {
-				$this->addError('id_currency_2', 'Не указана валюта');
+				$this->addError('id_currency_2', WobModule::t('main', 'Not specified currency'));
 				return false;
 			}
 			$this->id_currency_2 = $shop->id_currency_2;
@@ -315,13 +315,13 @@ class WobOrders extends WobActiveRecord
 	public function setPayCurrency($id_currency)
 	{
 		if ($this->isCurrencyPay($id_currency)===false) {
-			$this->addError('id_currency_1', 'Указанная валюта не доступна для оплаты');
+			$this->addError('id_currency_1', WobModule::t('main', 'This currency is not available for payments'));
 			return false;
 		}
 
 		$currency_1 = WobCurrency::model()->findByPk($id_currency);
 		if ($currency_1===null) {
-			$this->addError('id_currency_1', 'Системная ошибка. Повторите попытку позже.');
+			$this->addError('id_currency_1', WobModule::t('main', 'System error. Please try again later.'));
 			return false;
 		}
 
@@ -329,14 +329,14 @@ class WobOrders extends WobActiveRecord
 		if ($shop===null) {
 			$shop = WobShops::model()->findByPk($this->id_shop);
 			if ($shop===null) {
-				$this->addError('id_shop', 'Магазин в системе не найден');
+				$this->addError('id_shop', WobModule::t('main', 'Shop in the system is not found'));
 				return false;
 			}
 		}
 
 		$address = Wob::wallet($currency_1->code)->getNewAddress($shop->id_user);
 		if ($address===false) {
-			$this->addError('adress', 'Системная ошибка. Повторите попытку позже.');
+			$this->addError('adress', WobModule::t('main', 'System error. Please try again later.'));
 			return false;
 		}
 

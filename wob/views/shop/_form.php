@@ -62,7 +62,7 @@
 			'WobShops[id_currency_1][]',
 			$model->getCurrencyPay(),
 			CHtml::listData(WobCurrency::model()->pay()->findAll(), 'id', 'name'),
-			array('empty'=> 'Выбирите способ', 'multiple' => 'multiple', 'class'=>'form-control')
+			array('empty'=>WobModule::t('main', 'Select method'), 'multiple' => 'multiple', 'class'=>'form-control')
 		); ?>
 		<?php echo $form->error($model,'id_currency_1'); ?>
 	</div>
@@ -82,7 +82,7 @@
 	<?php echo $form->errorSummary($model, '', '', array('class'=>'alert alert-danger')); ?>
 
 	<div class="form-group buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save', array('class'=>'btn btn-primary')); ?>
+		<?php echo CHtml::submitButton($model->isNewRecord ? WobModule::t('main', 'Create') : WobModule::t('main', 'Save'), array('class'=>'btn btn-primary')); ?>
 	</div>
 
 <?php $this->endWidget(); ?>

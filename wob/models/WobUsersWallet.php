@@ -77,16 +77,16 @@ class WobUsersWallet extends WobActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
-			'id_user' => 'Id User',
-			'id_currency' => 'Id Currency',
-			'volume' => 'Volume',
-			'address' => 'Address',
-			'is_address_activate' => 'Is Address Activate',
-			'activate_key' => 'Activate Key',
-			'is_active' => 'Is Active',
-			'create_date' => 'Create Date',
-			'mod_date' => 'Mod Date',
+			'id' => WobModule::t('main', 'ID'),
+			'id_user' => WobModule::t('main', 'Id User'),
+			'id_currency' => WobModule::t('main', 'Id Currency'),
+			'volume' => WobModule::t('main', 'Volume'),
+			'address' => WobModule::t('main', 'Address'),
+			'is_address_activate' => WobModule::t('main', 'Is Address Activate'),
+			'activate_key' => WobModule::t('main', 'Activate Key'),
+			'is_active' => WobModule::t('main', 'Is Active'),
+			'create_date' => WobModule::t('main', 'Create Date'),
+			'mod_date' => WobModule::t('main', 'Mod Date'),
 		);
 	}
 
@@ -159,7 +159,7 @@ class WobUsersWallet extends WobActiveRecord
 	public function sendMail()
 	{
 		if (isset(Yii::app()->user->email) and !empty(Yii::app()->user->email)) {
-			$subject = 'активация';
+			$subject = WobModule::t('main', 'activation');
 			$activation_url = Yii::app()->createAbsoluteUrl('/wob/wallet/activation',array("id" => $this->id, "key" => $this->activate_key));
 			Wob::mail()->send(Yii::app()->user->email, $subject, $activation_url);
 		}

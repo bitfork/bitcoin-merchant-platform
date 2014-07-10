@@ -1,6 +1,6 @@
 <div class="panel panel-default">
 	<div class="panel-heading">
-		<?php echo Yii::t('main', 'Финансы'); ?>
+		<?php echo WobModule::t('main', 'Finance'); ?>
 		<div class="pull-right">
 			<select name="id_wallet_select">
 				<?php foreach ($wallets as $wallet) { ?>
@@ -41,28 +41,28 @@
 					<span class="badge">
 						<?php echo ViewPrice::format($balance_full, $wallet_select->currency->code, $wallet_select->currency->round); ?>
 					</span>
-					<?php echo Yii::t('main', 'Всего получено'); ?>:
+					<?php echo WobModule::t('main', 'Total received'); ?>:
 				</li>
 				<li class="list-group-item">
 					<span class="badge">
 						<?php echo ViewPrice::format($amount_payoff_new, $wallet_select->currency->code, $wallet_select->currency->round); ?>
 					</span>
-					<?php echo Yii::t('main', 'Заказанных на вывод'); ?>:
+					<?php echo WobModule::t('main', 'Ordered to withdraw'); ?>:
 				</li>
 				<li class="list-group-item">
 					<span class="badge">
 						<?php echo ViewPrice::format($amount_payoff_finish, $wallet_select->currency->code, $wallet_select->currency->round); ?>
 					</span>
-					<?php echo Yii::t('main', 'Переведено на ваш кошелек'); ?>:
+					<?php echo WobModule::t('main', 'Translated into your wallet'); ?>:
 				</li>
 				<li class="list-group-item">
 					<span class="badge">
 						<?php echo ViewPrice::format($balance, $wallet_select->currency->code, $wallet_select->currency->round); ?>
 					</span>
-					<?php echo Yii::t('main', 'Доступно для вывода'); ?>:
+					<?php echo WobModule::t('main', 'To output'); ?>:
 				</li>
 			</ul>
-			<?php echo CHtml::link(Yii::t('main','Вывести {code} на свой счет', array('{code}'=>$wallet_select->currency->code)), array('/wob/wallet/payoffCreate', 'id'=>$wallet_select->id), array('class'=>'btn btn-primary form-control')); ?>
+			<?php echo CHtml::link(WobModule::t('main','{code} bring to your account', array('{code}'=>$wallet_select->currency->code)), array('/wob/wallet/payoffCreate', 'id'=>$wallet_select->id), array('class'=>'btn btn-primary form-control')); ?>
 		<?php } ?>
 	</div>
 </div>

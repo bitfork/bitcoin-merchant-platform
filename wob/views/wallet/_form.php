@@ -37,7 +37,7 @@
 	<?php echo $form->errorSummary($model, '', '', array('class'=>'alert alert-danger')); ?>
 
 	<div class="form-group buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save', array('class'=>'btn btn-primary')); ?>
+		<?php echo CHtml::submitButton($model->isNewRecord ? WobModule::t('main', 'Create') : WobModule::t('main', 'Save'), array('class'=>'btn btn-primary')); ?>
 	</div>
 
 <?php $this->endWidget(); ?>

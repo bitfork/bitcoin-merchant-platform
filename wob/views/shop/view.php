@@ -14,7 +14,7 @@ $this->menu=array(
 );
 $this->h1 = 'View Shops #'. $model->id;
 ?>
-<h3>Статистика оплат</h3>
+<h3><?php echo WobModule::t('main', "Usage fees"); ?></h3>
 <?php $this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'orders-grid',
 	'dataProvider'=>$orderProvider,
@@ -78,7 +78,7 @@ $this->h1 = 'View Shops #'. $model->id;
 <?php if ($payoffProvider!==null) { ?>
 	<hr />
 	<h3>
-		Статистика выплат
+		<?php echo WobModule::t('main', "Statistics payout"); ?>
 		<div class="pull-right">
 			<select name="id_wallet_payoff_select">
 				<?php foreach ($wallets as $wallet) { ?>

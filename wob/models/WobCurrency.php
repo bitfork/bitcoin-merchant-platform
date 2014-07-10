@@ -67,14 +67,14 @@ class WobCurrency extends WobActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
-			'name' => 'Name',
-			'code' => 'Code',
-			'round' => 'Round',
-			'is_pay' => 'Is Pay',
-			'is_active' => 'Is Active',
-			'create_date' => 'Create Date',
-			'mod_date' => 'Mod Date',
+			'id' => WobModule::t('main', 'ID'),
+			'name' => WobModule::t('main', 'Name'),
+			'code' => WobModule::t('main', 'Code'),
+			'round' => WobModule::t('main', 'Round'),
+			'is_pay' => WobModule::t('main', 'Is Pay'),
+			'is_active' => WobModule::t('main', 'Is Active'),
+			'create_date' => WobModule::t('main', 'Create Date'),
+			'mod_date' => WobModule::t('main', 'Mod Date'),
 		);
 	}
 

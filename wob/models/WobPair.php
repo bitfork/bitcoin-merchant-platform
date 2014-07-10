@@ -70,15 +70,15 @@ class WobPair extends WobActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
-			'id_currency_1' => 'Id Currency 1',
-			'id_currency_2' => 'Id Currency 2',
-			'id_currency_3' => 'Id Currency 3',
-			'is_pay' => 'Is Pay',
-			'course' => 'Course',
-			'is_active' => 'Is Active',
-			'create_date' => 'Create Date',
-			'mod_date' => 'Mod Date',
+			'id' => WobModule::t('main', 'ID'),
+			'id_currency_1' => WobModule::t('main', 'Id Currency 1'),
+			'id_currency_2' => WobModule::t('main', 'Id Currency 2'),
+			'id_currency_3' => WobModule::t('main', 'Id Currency 3'),
+			'is_pay' => WobModule::t('main', 'Is Pay'),
+			'course' => WobModule::t('main', 'Course'),
+			'is_active' => WobModule::t('main', 'Is Active'),
+			'create_date' => WobModule::t('main', 'Create Date'),
+			'mod_date' => WobModule::t('main', 'Mod Date'),
 		);
 	}
 
