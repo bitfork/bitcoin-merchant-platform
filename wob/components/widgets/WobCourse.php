@@ -1,12 +1,14 @@
 <?php
-class WobCourse extends CWidget
+class WobCourse extends WobWidget
 {
+	public $view = 'course';
+
 	public function run()
 	{
 		$pairs = WobPair::model()->pay()->findAll();
 		$pair = $pairs[0];
 		unset($pairs[0]);
-		$this->render('course', array(
+		$this->render($this->getViewPathTheme().$this->view, array(
 			'pair'=>$pair,
 			'pairs'=>$pairs
 		));

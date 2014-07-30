@@ -1,6 +1,8 @@
 <?php
-class WobSettings extends CWidget
+class WobSettings extends WobWidget
 {
+	public $view = 'settings';
+
 	public function run()
 	{
 		if (Yii::app()->user->getState('wob_select_shop')===null) {
@@ -18,7 +20,7 @@ class WobSettings extends CWidget
 				Yii::app()->user->setFlash('wob_settings', 'Сохранено');
 			}
 		}
-		$this->render('settings', array(
+		$this->render($this->getViewPathTheme().$this->view, array(
 			'shop'=>$shop,
 			'model'=>$model,
 		));

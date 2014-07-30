@@ -1,6 +1,8 @@
 <?php
-class WobShopInfo extends CWidget
+class WobShopInfo extends WobWidget
 {
+	public $view = 'shop_info';
+
 	public function run()
 	{
 		if (Yii::app()->user->getState('wob_select_shop')===null) {
@@ -11,7 +13,7 @@ class WobShopInfo extends CWidget
 		if ($shop===null) {
 			return;
 		}
-		$this->render('shop_info', array(
+		$this->render($this->getViewPathTheme().$this->view, array(
 			'shop'=>$shop,
 		));
 	}

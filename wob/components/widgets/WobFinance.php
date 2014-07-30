@@ -1,6 +1,8 @@
 <?php
-class WobFinance extends CWidget
+class WobFinance extends WobWidget
 {
+	public $view = 'finance';
+
 	public function run()
 	{
 		if (Yii::app()->user->getState('wob_select_shop')===null) {
@@ -20,7 +22,7 @@ class WobFinance extends CWidget
 		} else {
 			$wallet_select = false;
 		}
-		$this->render('finance', array(
+		$this->render($this->getViewPathTheme().$this->view, array(
 			'id_shop'=>Yii::app()->user->getState('wob_select_shop'),
 			'wallets'=>$wallets,
 			'wallet_select'=>$wallet_select,
