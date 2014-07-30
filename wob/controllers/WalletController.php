@@ -67,6 +67,8 @@ class WalletController extends WobController
 	public function actionIndex()
 	{
 		$wallets = WobUsersWallet::model()->my()->findAll();
+		if (!isset($wallets[0]))
+			$this->redirect(array('create'));
 		$this->redirect(array('payoffCreate', 'id'=>$wallets[0]->id));
 		$dataProvider=WobUsersWallet::model()->getListMy();
 		$this->render('index',array(
