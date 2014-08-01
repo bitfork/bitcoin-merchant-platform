@@ -1,6 +1,6 @@
 <?php
 
-Yii::import("application.modules.wob.components.*");
+Yii::import("wob.components.*");
 
 class CourseCommand extends CConsoleCommand
 {
