@@ -21,6 +21,34 @@ class WobCurrencyCourse
 	}
 
 	/**
+	 * вернет курс ltc / usd
+	 * @return float
+	 */
+	public function getLTCUSD()
+	{
+		$data = $this->query('http://www.bitfork-rate.com/api/index/index/from/LTC/to/USD');
+		if ($data!==false and isset($data['success'], $data['data'], $data['data']['index'])) {
+			return (float)$data['data']['index'];
+		}
+		$this->log('не наден нужный елемент', __METHOD__);
+		return false;
+	}
+
+	/**
+	 * вернет курс drk / usd
+	 * @return float
+	 */
+	public function getDRKUSD()
+	{
+		$data = $this->query('http://www.bitfork-rate.com/api/index/index/from/DRK/to/USD');
+		if ($data!==false and isset($data['success'], $data['data'], $data['data']['index'])) {
+			return (float)$data['data']['index'];
+		}
+		$this->log('не наден нужный елемент', __METHOD__);
+		return false;
+	}
+
+	/**
 	 * записать в лог
 	 * @param $message
 	 * @param string $method
