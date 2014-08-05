@@ -37,19 +37,19 @@ $this->h1 = 'View Shops #'. $model->id;
 		array(
 			'name'=>'amount_1',
 			'type'=>'raw',
-			'value'=>'ViewPrice::format($data->amount_1, $data->currency_1->code, $data->currency_1->round)',
+			'value'=>'($data->currency_1===null)? "-" : ViewPrice::format($data->amount_1, $data->currency_1->code, $data->currency_1->round)',
 			'htmlOptions'=>array('style'=>'width:100px;'),
 		),
 		array(
 			'name'=>'amount_2',
 			'type'=>'raw',
-			'value'=>'ViewPrice::format($data->amount_2, $data->currency_2->code, $data->currency_2->round)',
+			'value'=>'($data->currency_2===null)? "-" : ViewPrice::format($data->amount_2, $data->currency_2->code, $data->currency_2->round)',
 			'htmlOptions'=>array('style'=>'width:100px;'),
 		),
 		array(
 			'name'=>'course',
 			'type'=>'raw',
-			'value'=>'ViewPrice::format($data->course, $data->currency_2->code, $data->currency_2->round)',
+			'value'=>'($data->currency_2===null)? "-" : ViewPrice::format($data->course, $data->currency_2->code, $data->currency_2->round)',
 			'htmlOptions'=>array('style'=>'width:100px;'),
 		),
 	),
@@ -117,7 +117,7 @@ $this->h1 = 'View Shops #'. $model->id;
 			array(
 				'name'=>'amount',
 				'type'=>'raw',
-				'value'=>'ViewPrice::format($data->amount, $data->wallet->currency->code, $data->wallet->currency->round)',
+				'value'=>'($data->wallet->currency===null)? "-" : ViewPrice::format($data->amount, $data->wallet->currency->code, $data->wallet->currency->round)',
 			),
 			'status.name',
 		),
