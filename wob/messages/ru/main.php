@@ -123,4 +123,5 @@ return array(
 	'Is Address Activate' => 'Активирован адрес?',
 	'Activate Key' => 'Ключ активации',
 	'Site' => 'Сайт',
+	'Unfortunately for this order no payment methods.' => 'К сожалению для данного заказа нет способов оплаты.',
 );
