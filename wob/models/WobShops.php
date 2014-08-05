@@ -221,7 +221,7 @@ class WobShops extends WobActiveRecord
 	 */
 	public function getCurrencyPay()
 	{
-		return explode(',', (string)$this->id_currency_1);
+		return (empty($this->id_currency_1)) ? array() : explode(',', (string)$this->id_currency_1);
 	}
 
 	/**
