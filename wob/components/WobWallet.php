@@ -25,7 +25,7 @@ class WobWallet
 	{
 		$this->_currency = $currency['name'];
 		$this->_wallet_name = (isset($currency['name'])) ? $currency['name'] : 'bitcoind';
-		$this->_wallet = new jsonRPCClient("http://". $currency['user'] .":". $currency['pass'] ."@". $this->currencys[$currency]['host'] .":". $currency['port'] ."/");
+		$this->_wallet = new jsonRPCClient("http://". $currency['user'] .":". $currency['pass'] ."@". $currency['host'] .":". $currency['port'] ."/");
 	}
 
 	/**
