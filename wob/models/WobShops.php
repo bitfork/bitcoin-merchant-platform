@@ -196,6 +196,7 @@ class WobShops extends WobActiveRecord
 					$wallet->id_currency = $id_currency;
 					$wallet->id_user = $this->id_user;
 					$wallet->volume = 0;
+					$wallet->address = (isset($_POST['id_currency'], $_POST['id_currency'][$id_currency])) ? $_POST['id_currency'][$id_currency] : null;
 					$wallet->save();
 				}
 			}
