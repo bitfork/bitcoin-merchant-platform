@@ -28,7 +28,7 @@ class ShopController extends WobController
 	{
 		$payoffProvider = null;
 		if (isset($_POST['id_wallet_payoff_select'])) {
-			Yii::app()->user->setState('wob_select_wallet', (int)$_POST['id_wallet_select']);
+			Yii::app()->user->setState('wob_select_wallet', (int)$_POST['id_wallet_payoff_select']);
 			Yii::app()->end();
 		}
 		$wallets = WobUsersWallet::model()->my()->findAll();
