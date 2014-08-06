@@ -74,6 +74,8 @@ class ShopController extends WobController
 				$this->redirect(array('view','id'=>$model->id));
 		}
 
+		Yii::app()->user->setState('wob_select_shop', null);
+
 		$this->render('create',array(
 			'model'=>$model,
 		));
