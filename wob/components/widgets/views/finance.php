@@ -59,7 +59,7 @@
 					<span class="badge">
 						<?php echo ViewPrice::format($balance, $wallet_select->currency->code, $wallet_select->currency->round); ?>
 					</span>
-					<?php echo WobModule::t('main', 'To output'); ?>:
+					<?php echo WobModule::t('main', 'Your balance'); ?>:
 				</li>
 			</ul>
 			<?php echo CHtml::link(WobModule::t('main','{code} withdraw funds', array('{code}'=>$wallet_select->currency->code)), array('/wob/wallet/payoffCreate', 'id'=>$wallet_select->id), array('class'=>'btn btn-primary form-control')); ?>

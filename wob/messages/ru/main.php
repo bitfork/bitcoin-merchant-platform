@@ -45,7 +45,7 @@ return array(
 	'Total received' => 'Всего получено',
 	'Ordered the withdrawal' => 'Заказанных на вывод',
 	'Translated into your wallet' => 'Переведено на ваш кошелек',
-	'To output' => 'Доступно для вывода',
+	'Your balance' => 'Доступно для вывода',
 	'{code} withdraw funds' => 'Вывести {code} на свой счет',
 	'Settings' => 'Настройки',
 	'I want to commission added to the account value (do you get).' => 'Я хочу, чтобы комиссия добавлялась к стоимости счета (вы больше получаете).',
