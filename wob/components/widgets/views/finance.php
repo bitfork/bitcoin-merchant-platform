@@ -62,7 +62,7 @@
 					<?php echo WobModule::t('main', 'To output'); ?>:
 				</li>
 			</ul>
-			<?php echo CHtml::link(WobModule::t('main','{code} bring to your account', array('{code}'=>$wallet_select->currency->code)), array('/wob/wallet/payoffCreate', 'id'=>$wallet_select->id), array('class'=>'btn btn-primary form-control')); ?>
+			<?php echo CHtml::link(WobModule::t('main','{code} withdraw funds', array('{code}'=>$wallet_select->currency->code)), array('/wob/wallet/payoffCreate', 'id'=>$wallet_select->id), array('class'=>'btn btn-primary form-control')); ?>
 		<?php } ?>
 	</div>
 </div>
