@@ -23,7 +23,7 @@ class WobWallet
 	 */
 	public function setWallet($currency)
 	{
-		$this->_currency = $currency['name'];
+		$this->_currency = $currency;
 		$this->_wallet_name = (isset($currency['name'])) ? $currency['name'] : 'bitcoind';
 		$this->_wallet = new jsonRPCClient("http://". $currency['user'] .":". $currency['pass'] ."@". $currency['host'] .":". $currency['port'] ."/");
 	}
