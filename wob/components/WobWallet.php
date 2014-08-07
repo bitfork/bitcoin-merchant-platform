@@ -59,6 +59,16 @@ class WobWallet
 	}
 
 	/**
+	 * сумма fee
+	 * @return int
+	 */
+	public function getFee()
+	{
+		return (isset($this->_currency['fee'])) ?
+			$this->_currency['fee'] : 0;
+	}
+
+	/**
 	 * Получение информации из wallet.
 	 * @return mixed
 	 */
@@ -288,7 +298,8 @@ class WobWallet
 		}
 		$account = $this->getNameAccount($account);
 		try {
-			return $this->_wallet->sendfrom($account, (string)$toaddress, (float)$btc, (int)$minconf);
+			$btc = (float)$btc - $this->getFee();
+			return $this->_wallet->sendfrom($account, (string)$toaddress, $btc, (int)$minconf);
 		} catch (Exception $e) {
 			$this->log(var_export(func_get_args(), true) . $e->getMessage(), __METHOD__);
 			return false;

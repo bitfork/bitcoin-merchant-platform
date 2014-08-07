@@ -13,6 +13,7 @@ class WobModule extends CWebModule
 		'btc'=>array(
 			'name'=>'btc',
 			'count_confirm'=>6,
+			'fee'=>0.001,
 			'user'=>'admin',
 			'pass'=>'password',
 			'host'=>'yandex.ru',
