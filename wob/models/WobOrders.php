@@ -455,7 +455,7 @@ class WobOrders extends WobActiveRecord
 			$this->id_status = self::STATUS_MIN;
 		} elseif ($summa_pay > 0) { // если сумма больше 0 нужно проверить статус
 			// получаем все транзакции аккаунта, среди них должна быть с адресов нашей заявки
-			$list = $wallet->listTransactions((string)$this->shop->name);
+			$list = $wallet->listTransactions((string)$this->shop->id_user);
 			foreach ($list as $value) {
 				// если адресс транзакции и адрес заказа совпадает, и транзакция по оплате
 				if ($value['address']==$this->adress and $value['category']=='receive') {
