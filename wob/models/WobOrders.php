@@ -372,12 +372,15 @@ class WobOrders extends WobActiveRecord
 
 		$this->course = $pair->course;
 		$this->amount_1 = $this->amount_2 / $this->course;
+		// округление в большую сторону
+		$this->amount_1 = ceil($this->amount_1 * pow(10, 8)) / pow(10, 8);
 		$this->commission = $this->shop->commission;
 		$this->volume_commission = 0;
 		// если коммисию берем с пользователя то к стоимости нужно добавить размер коммиссии
 		if ($this->shop->is_commission_shop==0) {
 			$this->volume_commission = $this->amount_1 * $this->commission / 100;
 			$this->amount_1 = $this->amount_1 + $this->volume_commission;
+			$this->amount_1 = ceil($this->amount_1 * pow(10, 8)) / pow(10, 8);
 		}
 
 		if ($this->save()) {
