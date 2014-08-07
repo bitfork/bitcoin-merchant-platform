@@ -53,7 +53,7 @@ class WalletController extends WobController
 		{
 			$model->attributes=$_POST['WobUsersWallet'];
 			if($model->save())
-				$this->redirect(array('index'));
+				$this->redirect(array('payoffCreate', 'id'=>$model->id));
 		}
 
 		$this->render('update',array(
