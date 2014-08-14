@@ -74,9 +74,13 @@ class WobModule extends CWebModule
 		$assetsUrl = $this->getAssetsUrl();
 		$cs = Yii::app()->getClientScript();
 		if ($this->fileCss=='bootstrap') {
-			$cs->registerCssFile($assetsUrl.'/css/wob.css');
-			$cs->registerCssFile($assetsUrl.'/bootstrap-3.2.0/css/bootstrap.min.css');
-			$cs->registerScriptFile($assetsUrl.'/bootstrap-3.2.0/js/bootstrap.min.js');
+			$cs->packages['bootstrap'] = array(
+				'baseUrl'=>$assetsUrl,
+				'css'=>array('/css/wob.css','/bootstrap-3.2.0/css/bootstrap.min.css'),
+				'js'=>array('/bootstrap-3.2.0/js/bootstrap.min.js'),
+				'depends'=>array('jquery'),
+			);
+			$cs->registerPackage('bootstrap');
 		} else {
 			$cs->registerCssFile($assetsUrl.'/css/default.css');
 		}
