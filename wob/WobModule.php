@@ -76,8 +76,8 @@ class WobModule extends CWebModule
 		if ($this->fileCss=='bootstrap') {
 			$cs->packages['bootstrap'] = array(
 				'baseUrl'=>$assetsUrl,
-				'css'=>array('/css/wob.css','/bootstrap-3.2.0/css/bootstrap.min.css'),
-				'js'=>array('/bootstrap-3.2.0/js/bootstrap.min.js'),
+				'css'=>array('css/wob.css','bootstrap-3.2.0/css/bootstrap.min.css'),
+				'js'=>array('bootstrap-3.2.0/js/bootstrap.min.js'),
 				'depends'=>array('jquery'),
 			);
 			$cs->registerPackage('bootstrap');
